@@ -1,3 +1,7 @@
+from car.py import Car
+from plan.py import *
+from ride.py import Ride
+
 def get_info(filename):
     """
     Function that gets the input
