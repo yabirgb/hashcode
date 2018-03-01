@@ -36,11 +36,11 @@ def get_info(filename):
 print(get_info('input/a_example.in'))
 
 data, rides = get_info('input/a_example.in')
-rows, columns, nCars, nRides, TIME = data
+rows, columns, nCars, nRides, bonus, TIME = data
 
 cars = [Car() for _ in range(nCars)]
 
-results = plan(rides, cars, TIME)
+results = plan(rides, cars, bonus, TIME)
 
 with open("results.txt", "w") as f:
 
