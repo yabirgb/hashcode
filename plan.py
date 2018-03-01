@@ -22,10 +22,12 @@ def score_car(x, rides):
 
 def plan(rides, cars):
 	time = 0
-	pending_rides = list(range(0,len(rides)))
-	pending_rides.sort( lambda x: rides[x].getStart())
-	available_cars =  list(range(0,len(cars)))
+	pending_rides = [x for x in range(len(rides))]
+	pending_rides.sort( lambda x: rides[x].distance()/rides[x].getEnd())
+	available_cars = [x for x in range(len(cars))]
 	busy_cars = []
+
+	results = [[] for _ in cars]
 
 	while time < TIME and pending_rides:
 
@@ -35,7 +37,6 @@ def plan(rides, cars):
 				heappush(busy_cars, car)
 				break
 			available_cars.append(car[1])
-
 
 
 		while pending_rides and available_cars:
@@ -49,6 +50,7 @@ def plan(rides, cars):
 
 			cars[assigned_car].assignRide(rides[pending_rides[0]])
 			pending_rides.pop(0)
+			results[assigned_car].append(pending_rides[0])
 			heappush(busy_cars, (cars[assigned_car].getFinishTime(), assigned_car))
 			available_cars.remove(assigned_car)
 
@@ -56,6 +58,8 @@ def plan(rides, cars):
 				pending_rides.pop(0)
 			
 		time = min(busy_cars)
+
+	return results
 
 
 
