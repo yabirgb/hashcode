@@ -67,9 +67,11 @@ class Ride():
         """
         Distance between point (a,b) the origin and 
         (x,y) the destination
+        Return:
+            int with the total distance
         """
 
-        return abs(self.origin[0]-self.destination[0]) + abs(self.origin[1] - self.destination[1]))
+        return abs(self.origin[0]-self.destination[0]) + abs(self.origin[1] - self.destination[1])
 
         
         
