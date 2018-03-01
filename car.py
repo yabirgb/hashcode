@@ -28,6 +28,5 @@ class Car:
     """
     Time when the car will be free again
     """
-    def getFinishTime(self, r):
+    def getFinishTime(self):
         return finishTime
-
