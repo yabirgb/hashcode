@@ -33,18 +33,18 @@ def get_info(filename):
 
         return params, rides
 
-def good(r, available):
+def good(r, availableCars):
 
     best = 0
     best_h = -float('Inf')
 
-    for i,v in enumerate(available):
-        den = r.getStart() - t - distance(r.getOrigin)
+    for index,vehicle in enumerate(availableCars):
+        den = r.getStart() - t - vehicle.distance(r.getOrigin)
         if den == 0:
-            return i
+            return index
 
         if r.distance/den > best:
-            best = i
+            best = index
             best_h = r.distance/den
 
     return best, best_h
