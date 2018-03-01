@@ -46,3 +46,5 @@ class Ride():
         return self.endTime    
         
         
+    def obsolete(self, currentTime):
+        return currentTime + self.distance() >= self.finish
