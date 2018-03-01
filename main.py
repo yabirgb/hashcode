@@ -1,3 +1,5 @@
+import sys
+
 from car import Car
 from plan import *
 from ride import Ride
@@ -37,19 +39,28 @@ def get_info(filename):
 
         return params, rides
 
-data, ridesRaw = get_info('input/a_example.in')
-rows, columns, nCars, nRides, bonus, TIME = data
-
-cars = [Car() for _ in range(nCars)]
-rides = [Ride(elem) for elem in ridesRaw]
-maxDistance = rows + columns
-
-results = plan(rides, cars, bonus, TIME, maxDistance)
 
 
-with open("results.txt", "w") as f:
+if __name__ == "__main__":
+    """
+    uso:
 
-    for l in results:
-        l = list(map(str, l))
-        line = str(len(l)) + ' ' + ' '.join(l) + '\n'
-        f.write(line)
+    python3 main.py nombre
+    """
+    filename = sys.argv[1]
+
+    data, ridesRaw = get_info('input/{}.in'.format(filename))
+    rows, columns, nCars, nRides, bonus, TIME = data
+    
+    cars = [Car() for _ in range(nCars)]
+    rides = [Ride(elem) for elem in ridesRaw]
+    maxDistance = rows + columns
+
+    results = plan(rides, cars, bonus, TIME, maxDistance)
+
+    with open("{}.out".format(filename), "w") as f:
+        
+        for l in results:
+            l = list(map(str, l))
+            line = str(len(l)) + ' ' + ' '.join(l) + '\n'
+            f.write(line)
