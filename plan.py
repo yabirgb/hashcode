@@ -23,7 +23,7 @@ def score_car(x, rides):
 def plan(rides, cars, bonus, TIME, maxDistance):
     time = 0
     pending_rides = [x for x in range(len(rides))]
-    pending_rides.sort(key=lambda x: rides[x].distance()/rides[x].getEnd())
+    #pending_rides.sort(key=lambda x: rides[x].distance()/rides[x].getEnd())
     available_cars = [x for x in range(len(cars))]
     busy_cars = []
 
@@ -39,7 +39,8 @@ def plan(rides, cars, bonus, TIME, maxDistance):
 
 
         while pending_rides and available_cars:
-            
+            pending_rides.sort(key=lambda x: maxDistance if (rides[x].getEnd() == time) else rides[x].distance()/(rides[x].getEnd() - time))
+   
             min_d = maxDistance
             assigned_car = 0
             for car in available_cars:
