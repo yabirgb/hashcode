@@ -40,7 +40,7 @@ rows, columns, nCars, nRides, TIME = data
 
 cars = [Car() for _ in range(nCars)]
 
-results = plan(rides, cars)
+results = plan(rides, cars, TIME)
 
 with open("results.txt", "w") as f:
 

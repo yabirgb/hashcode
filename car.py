@@ -21,9 +21,9 @@ class Car:
     """
     Update the attributes of the car as it takes the ride given
     """
-    def assignRide(self, r):
+    def assignRide(self, r, time):
         self.position = r.getDestination()
-        self.finishTime = max(TIME + distance(r.origin), r.getStart()) + r.distance()
+        self.finishTime = max(time + distance(r.origin), r.getStart()) + r.distance()
 
     """
     Time when the car will be free again
