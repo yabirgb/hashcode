@@ -37,16 +37,19 @@ def get_info(filename):
 
         return params, rides
 
-print(get_info('input/a_example.in'))
-
-data, rides = get_info('input/a_example.in')
+data, ridesRaw = get_info('input/a_example.in')
 rows, columns, nCars, nRides, bonus, TIME = data
 
 cars = [Car() for _ in range(nCars)]
+rides = [Ride(elem) for elem in ridesRaw]
+maxDistance = rows + columns
 
-results = plan(rides, cars, bonus, TIME)
+results = plan(rides, cars, bonus, TIME, maxDistance)
+
 
 with open("results.txt", "w") as f:
 
     for l in results:
-        f.write(' '.join([len(l)]+l))
+        l = list(map(str, l))
+        line = str(len(l)) + ' ' + ' '.join(l) + '\n'
+        f.write(line)

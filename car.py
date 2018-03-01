@@ -23,10 +23,10 @@ class Car:
     """
     def assignRide(self, r, time):
         self.position = r.getDestination()
-        self.finishTime = max(time + distance(r.origin), r.getStart()) + r.distance()
+        self.finishTime = max(time + self.distance(r.origin), r.getStart()) + r.distance()
 
     """
     Time when the car will be free again
     """
     def getFinishTime(self):
-        return finishTime
+        return self.finishTime

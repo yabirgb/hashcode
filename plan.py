@@ -1,4 +1,5 @@
 import math
+from heapq import heappush, heappop
 
 def distance(p1, p2):
     return abs(p1[0]-p2[0])+abs(p1[1]- p2[1])
@@ -19,15 +20,14 @@ def score_car(x, rides):
 
     return score
 
-def plan(rides, cars, bonus, TIME):
+def plan(rides, cars, bonus, TIME, maxDistance):
     time = 0
     pending_rides = [x for x in range(len(rides))]
-    pending_rides.sort( lambda x: rides[x].distance()/rides[x].getEnd())
+    pending_rides.sort(key=lambda x: rides[x].distance()/rides[x].getEnd())
     available_cars = [x for x in range(len(cars))]
     busy_cars = []
 
     results = [[] for _ in cars]
-
     while time < TIME and pending_rides:
 
         while busy_cars:
@@ -40,7 +40,7 @@ def plan(rides, cars, bonus, TIME):
 
         while pending_rides and available_cars:
             
-            mind_d = MAX
+            min_d = maxDistance
             assigned_car = 0
             for car in available_cars:
                 if min_d > distance(cars[car].getPosition(), rides[pending_rides[0]].getOrigin()):
@@ -48,15 +48,16 @@ def plan(rides, cars, bonus, TIME):
                     assigned_car = car
 
             cars[assigned_car].assignRide(rides[pending_rides[0]], time)
-            pending_rides.pop(0)
+            
             results[assigned_car].append(pending_rides[0])
+            pending_rides.pop(0)
             heappush(busy_cars, (cars[assigned_car].getFinishTime(), assigned_car))
             available_cars.remove(assigned_car)
 
             while rides[0].obsolete(time):
                 pending_rides.pop(0)
             
-        time = min(busy_cars)
+        time = min(busy_cars)[0]
 
     return results
 
