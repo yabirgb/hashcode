@@ -20,7 +20,7 @@ def score_car(x, rides):
 
     return score
 
-def plan(rides, cars):
+def plan(rides, cars, bonus, TIME):
     time = 0
     pending_rides = [x for x in range(len(rides))]
     pending_rides.sort( lambda x: rides[x].distance()/rides[x].getEnd())
@@ -48,7 +48,7 @@ def plan(rides, cars):
                     min_d = distance(cars[car].getPosition(), rides[pending_rides[0]].getOrigin())
                     assigned_car = car
 
-            cars[assigned_car].assignRide(rides[pending_rides[0]])
+            cars[assigned_car].assignRide(rides[pending_rides[0]], time)
             pending_rides.pop(0)
             results[assigned_car].append(pending_rides[0])
             heappush(busy_cars, (cars[assigned_car].getFinishTime(), assigned_car))
