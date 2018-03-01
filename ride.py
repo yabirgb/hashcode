@@ -36,7 +36,8 @@ class Ride():
         self.origin = data[0][:2]
         self.destination = data[0][2:4]
         self.start = data[1]
-        self.finish = data[2] #The latest 
+        self.finish = data[2] #The latest
+        self.endTime = self.start + self.distance()
 
     def getDestination(self):
         """
@@ -73,5 +74,8 @@ class Ride():
 
         return abs(self.origin[0]-self.destination[0]) + abs(self.origin[1] - self.destination[1])
 
+    def getEnd(self):
+        return self.start +
+        
         
         
