@@ -43,7 +43,6 @@ class Ride():
         return abs(self.origin[0]-self.destination[0]) + abs(self.origin[1] - self.destination[1])
 
     def getEnd(self):
-        return self.start +
-        
+        return self.endTime    
         
         
