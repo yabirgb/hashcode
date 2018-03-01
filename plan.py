@@ -54,13 +54,9 @@ def plan(rides, cars, bonus, TIME, maxDistance):
             heappush(busy_cars, (cars[assigned_car].getFinishTime(), assigned_car))
             available_cars.remove(assigned_car)
 
-            while rides[0].obsolete(time):
+            while pending_rides and rides[pending_rides[0]].obsolete(time):
                 pending_rides.pop(0)
             
         time = min(busy_cars)[0]
 
     return results
-
-
-
-
