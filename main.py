@@ -1,6 +1,6 @@
-from car.py import Car
-from plan.py import *
-from ride.py import Ride
+from car import Car
+from plan import *
+from ride import Ride
 
 def get_info(filename):
     """

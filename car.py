@@ -1,4 +1,4 @@
-from ride.py import Ride
+from ride import Ride
 class Car:
 
     def __init__(self):
