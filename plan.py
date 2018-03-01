@@ -38,8 +38,8 @@ def plan(rides, cars, bonus, TIME, maxDistance):
             available_cars.append(car[1])
 
 
+        pending_rides.sort(key=lambda x: maxDistance if (rides[x].getEnd() == time) else rides[x].distance()/(rides[x].getEnd() - time))
         while pending_rides and available_cars:
-            pending_rides.sort(key=lambda x: maxDistance if (rides[x].getEnd() == time) else rides[x].distance()/(rides[x].getEnd() - time))
    
             min_d = maxDistance
             assigned_car = 0
