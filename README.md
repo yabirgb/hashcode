@@ -6,7 +6,6 @@ HashCode 2018 implemented in Python.
 
 Input | Score |
 :---: | :---: |
-
 A - example | 10 |
 B - should be easy | 176877 |
 C - no hurry | 8156513 |
