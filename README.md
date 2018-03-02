@@ -3,6 +3,8 @@
 This is our solution to the problem published for the Google
 HashCode 2018 implemented in Python.
 
+Authors: [@Laucalle](https://github.com/Laucalle), [@Ocete](https://github.com/Ocete), [@dcabezas98](https://github.com/dcabezas98) and [@yabirgb](https://github.com/yabirgb).
+
 
 Input | Score |
 :---: | :---: |
