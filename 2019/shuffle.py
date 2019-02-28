@@ -8,3 +8,13 @@ def shuffle(l):
         l[k], l[i] = l[i], l[k]
 
     return l
+
+
+def order_crossover(gen1, gen2, child1, child2):
+
+    """
+    Generates two childre from the parents provided using
+    Order Cross 
+    """
+
+    rand_top = 
