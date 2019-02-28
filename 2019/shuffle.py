@@ -11,7 +11,7 @@ def Shuffle(l1):
     return l
 
 
-def order_crossover(gen1, gen2, child1, child2, rt=None, rb=None):
+def order_crossover(gen1, gen2, rt=None, rb=None):
 
     """
     Generates two childre from the parents provided using
@@ -24,7 +24,7 @@ def order_crossover(gen1, gen2, child1, child2, rt=None, rb=None):
     # randint is include a <= x <= b
 
     size = len(gen)
-
+    child1, child2 = [],[]
     rand_top = rt or randint(3, size-3)
     rand_botton = rb or randint(0, rand_top-1)
 
@@ -64,4 +64,4 @@ def order_crossover(gen1, gen2, child1, child2, rt=None, rb=None):
     if gen1.slides[rand_top].pk not in used2:
         child2.append(gen1.slides[rand_top]) 
 
-    return Slide(child1), Slide(child2)    
+    return Individual(child1), Individual(child2)    

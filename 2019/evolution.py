@@ -1,5 +1,6 @@
 from random import sample
 
+from shuffle import order_crossover
 from shuffle import shuffle
 from Individual import individual
 from Slide import slide
@@ -9,10 +10,10 @@ class Evolution:
 		self.photos = photos
 		self.population = self.initializePopulation(population_size)
 	
-	def init_params(self, vertical_mutation_percentage, random_mutation_percentage, child_percentage):
+	def init_params(self, vertical_mutation_percentage, random_mutation_percentage, parent_percentage):
 		self.v_m_percent = vertical_mutation_percentage
 		self.r_m_percent = random_mutation_percentage
-		self.child_percent = child_percentage
+		self.parent_percent = child_percentage
 
 
 	def initialize_population(self, population_size):
@@ -36,7 +37,7 @@ class Evolution:
 		return Individual(slides)
 
 	def runGeneration(self):
-		assert self.child_percent, "Call init_params"
+		assert self.parent_percent, "Call init_params"
 		parents = self.selection()
 		children = self.cross(parents)
 		self.random_mutation(children)
@@ -58,3 +59,19 @@ class Evolution:
 		for indv in chosen:
 			indv.mutate_vertical()
 
+	def selection(self):
+        parents = []
+        n_parents = int(len(self.population) * self.parent_percent * 2)
+        for i in range(n_parents):
+            candidate_1, candidate_2 = sample(self.population, 2)
+            parents.append(min(candidate_1, candidate_2, key=lambda x: x.total_score))
+        return parents
+
+    def cross(self, parents):
+    	children = []
+    	for i in range(0, len(parents), 2):
+    		child1, child2 = order_crossover(parents[i], parents[i+1])
+    		children.append(child1)
+    		children.append(child2)
+
+    	return children
