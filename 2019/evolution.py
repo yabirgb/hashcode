@@ -1,3 +1,5 @@
+from random import sample
+
 from shuffle import shuffle
 from Individual import individual
 from Slide import slide
@@ -41,6 +43,18 @@ class Evolution:
 		self.vertical_mutation(children)
 		population = self.replacement(children, len(population))
 
-	def replacecment(self, offspring, total_pop):
+	def replacement(self, offspring, total_pop):
 		return sorted((self.population + offspring), key=lambda a: a.total_score, reverse=False)[:total_pop]
+
+	def random_mutation(self, offspring):
+		n_mut = int(self.r_m_percent * len(offspring))
+		chosen = sample(offspring, n_mut)
+		for indv in chosen:
+			indv.mutate_random()
+
+	def vertical_mutation(self, offspring):
+		n_mut = int(self.v_m_percent * len(offspring))
+		chosen = sample(offspring, n_mut)
+		for indv in chosen:
+			indv.mutate_vertical()
 
