@@ -1,8 +1,8 @@
 from random import randint
 
 # shuffles a list
-def shuffle(l):
-
+def Shuffle(l1):
+    l=list(l1)
     for k in range(len(l)):
         i = randint(k, len(l)-1)
         l[k], l[i] = l[i], l[k]
