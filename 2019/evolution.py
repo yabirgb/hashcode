@@ -8,7 +8,9 @@ from Slide import slide
 class Evolution:
 	def __init__(self, population_size, photos):
 		self.photos = photos
-		self.population = self.initializePopulation(population_size)
+		self.population = sorted(self.initializePopulation(population_size), key=lambda a: a.total_score, reverse=True)
+		self.best_ever = self.population[0]
+		 
 	
 	def init_params(self, vertical_mutation_percentage, random_mutation_percentage, parent_percentage):
 		self.v_m_percent = vertical_mutation_percentage
@@ -36,16 +38,17 @@ class Evolution:
 
 		return Individual(slides)
 
-	def runGeneration(self):
+	def run_generation(self):
 		assert self.parent_percent, "Call init_params"
 		parents = self.selection()
 		children = self.cross(parents)
 		self.random_mutation(children)
 		self.vertical_mutation(children)
 		population = self.replacement(children, len(population))
+		self.best_ever = self.population[0]
 
 	def replacement(self, offspring, total_pop):
-		return sorted((self.population + offspring), key=lambda a: a.total_score, reverse=False)[:total_pop]
+		return sorted((self.population + offspring), key=lambda a: a.total_score, reverse=True)[:total_pop]
 
 	def random_mutation(self, offspring):
 		n_mut = int(self.r_m_percent * len(offspring))
@@ -75,3 +78,6 @@ class Evolution:
     		children.append(child2)
 
     	return children
+
+    def best_ever(self):
+    	return self.best_ever
