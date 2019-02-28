@@ -1,5 +1,8 @@
 population = 50
 generations = 50
+mutate_vertical_percent = 0.2
+mutate_random_percent = 0.2
+parent_percent = 0.25
 
 import sys
 from photo import Photo
@@ -34,7 +37,13 @@ if __name__ == "__main__":
 
     n, photos, verticals = get_info('input/{}.txt'.format(filename))
 
-    e = evolution.Evolution(population, photos, verticals)
+    e = evolution.Evolution(population, photos)
+    if verticals <=1:
+        vertical_mutation = 0
+    else:
+        vertical_mutation = mutate_vertical_percent
+
+    e.init_params(vertical_mutation, mutate_random_percent, parent_percent)
 
     for _ in range(generations):
         e.run_generation()
