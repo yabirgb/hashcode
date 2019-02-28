@@ -23,9 +23,13 @@ def order_crossover(gen1, gen2, rt=None, rb=None):
     # and we discard the last two
     # randint is include a <= x <= b
 
+    print("p1 ", len(gen1.slides))
+    print("p2 ", len(gen2.slides))
+
+
     size = len(gen1.slides)
     child1, child2 = [],[]
-    rand_top = rt or randint(3, size-3)
+    rand_top = rt or randint(3, size-3)+2
     rand_botton = rb or randint(0, rand_top-1)
 
     # set of 
@@ -49,8 +53,7 @@ def order_crossover(gen1, gen2, rt=None, rb=None):
 
     while pos != top_limit:
 
-        pos = (pos + 1) % size 
-
+        print(pos, " ", size)
         if gen2.slides[pos].pk not in used1:
             child1.append(gen2.slides[pos])
             used1.add(gen2.slides[pos].pk)
@@ -59,9 +62,13 @@ def order_crossover(gen1, gen2, rt=None, rb=None):
             child2.append(gen1.slides[pos])
             used2.add(gen1.slides[pos].pk)
 
+        pos = (pos + 1) % size 
+
     if gen2.slides[rand_top].pk not in used1:
-        child1.append(gen2.slides[rand_top])
+        child2.append(gen1.slides[rand_top])
     if gen1.slides[rand_top].pk not in used2:
-        child2.append(gen1.slides[rand_top]) 
+        child1.append(gen2.slides[rand_top]) 
+
+    print("hygjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj")
 
     return Individual(child1), Individual(child2)    
