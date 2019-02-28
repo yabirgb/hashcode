@@ -37,3 +37,11 @@ class Slide:
             result.union(photo.tags)
 
         return result
+
+    def pk(self):
+        pk1 = photo1.pk
+        pk2 = 0
+        if photo2:
+            pk2 = photo2.pk*1e6
+
+        return pk1+pk2
