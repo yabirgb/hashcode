@@ -1,7 +1,7 @@
-population = 10
-generations = 10
+population = 100
+generations = 100
 mutate_vertical_percent = 0.2
-mutate_random_percent = 0
+mutate_random_percent = 0.2
 parent_percent = 0.25
 
 import sys
@@ -11,7 +11,7 @@ from individual import Individual
 
 def get_info(filename):
 
-    with open(filename) as f:
+    with open(filename+".txt") as f:
         #get the first line of the input
         n = int(f.readline()[:-1])
         
@@ -36,7 +36,7 @@ if __name__ == "__main__":
     filename = sys.argv[1]
 
     n, photos, verticals = get_info('input/{}'.format(filename))
-    print("aqui")
+    print("file " + filename)
     e = Evolution(population, photos)
     if verticals <=1:
         vertical_mutation = 0
@@ -49,11 +49,11 @@ if __name__ == "__main__":
         print ("generation "+ str(i))
         e.run_generation()
 
-    best = e.best_ever()
+    best = e.best_ever
     
     with open("output/{}.out".format(filename), "w") as f:
 
-        f.writeline(len(best.slides))
+        f.write(str(len(best.slides)) + '\n')
         for s in best.slides:
-            pks = [x.pk for x in s.photos]
-            f.writeline(' '.join(list(map(str,pks))))
+            pks = [x.pk for x in s.photos if x != None]
+            f.write(' '.join(list(map(str,pks)))+'\n')

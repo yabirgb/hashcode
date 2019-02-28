@@ -22,7 +22,6 @@ class Evolution:
     def initialize_population(self, population_size):
         population = []
         for i in range(population_size):
-            print(i)
             population.append(self.random_indv())
         return population
 
@@ -40,8 +39,7 @@ class Evolution:
                     slides.append(Slide(photo, unpaired_photo))
                     unpaired_photo = None
             else:
-                slides.append(photo)
-        print(len(slides), " ggggggggggggggggggggggggggggg")
+                slides.append(Slide(photo))
         return Individual(slides)
 
     def run_generation(self):

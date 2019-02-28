@@ -75,17 +75,17 @@ class Individual:
             self.total_score += self.score(j)
 
 
-    def random_mutate(self):
+    def mutate_random(self):
         
-        i = random(0, len(self.slides)-3)
-        j = random(i+2, len(self.slides)-1)
+        i = randint(0, len(self.slides)-3)
+        j = randint(i+2, len(self.slides)-1)
 
         self.total_score -= self.score(i)
         self.total_score -= self.score(j-1)
         if j < len(self.slides)-1:
             self.total_score -= self.score(j)
 
-        s = Slide(self.slides[j].photo1, self.slides[j].photo2)
+        s = Slide(self.slides[j].photos[0], self.slides[j].photos[1])
 
         
         for k in range(j-1, i, -1):
