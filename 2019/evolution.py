@@ -41,6 +41,6 @@ class Evolution:
 		self.vertical_mutation(children)
 		population = self.replacement(children, len(population))
 
-	def replacecment(self, offspring, total_pop):
+	def replacement(self, offspring, total_pop):
 		return sorted((self.population + offspring), key=lambda a: a.total_score, reverse=False)[:total_pop]
 
