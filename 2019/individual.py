@@ -23,7 +23,7 @@ class Individual:
         self.total_score = 0
 
         for i in range(len(slides)-1):
-            s=score(i)
+            s=self.score(i)
             self.scores.append(s)
             self.total_score+=s
 

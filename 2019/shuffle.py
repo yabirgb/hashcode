@@ -1,8 +1,8 @@
 from random import randint
 from slide import Slide
-
+from individual import Individual
 # shuffles a list
-def Shuffle(l1):
+def shuffle(l1):
     l=list(l1)
     for k in range(len(l)):
         i = randint(k, len(l)-1)
@@ -23,7 +23,7 @@ def order_crossover(gen1, gen2, rt=None, rb=None):
     # and we discard the last two
     # randint is include a <= x <= b
 
-    size = len(gen)
+    size = len(gen1.slides)
     child1, child2 = [],[]
     rand_top = rt or randint(3, size-3)
     rand_botton = rb or randint(0, rand_top-1)
@@ -34,7 +34,7 @@ def order_crossover(gen1, gen2, rt=None, rb=None):
     
     for i in range(rand_botton, rand_top+1):
         sld1 = gen1.slides[i]
-        sld2 = get2.slides[i]
+        sld2 = gen2.slides[i]
 
         child1.append(sld1)
         child2.append(sld2)

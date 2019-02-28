@@ -1,7 +1,7 @@
-population = 50
-generations = 50
+population = 10
+generations = 10
 mutate_vertical_percent = 0.2
-mutate_random_percent = 0.2
+mutate_random_percent = 0
 parent_percent = 0.25
 
 import sys
@@ -24,7 +24,7 @@ def get_info(filename):
             if line[0] == 'V':
                 verticals+=1
             
-            photos.append(Photo(len(photos)), line[0], line[1], set(line[2:]))
+            photos.append(Photo(len(photos), line[0], set(line[2:])))
         return n, photos, verticals
     
 if __name__ == "__main__":
@@ -35,9 +35,9 @@ if __name__ == "__main__":
     """
     filename = sys.argv[1]
 
-    n, photos, verticals = get_info('input/{}.txt'.format(filename))
-
-    e = evolution.Evolution(population, photos)
+    n, photos, verticals = get_info('input/{}'.format(filename))
+    print("aqui")
+    e = Evolution(population, photos)
     if verticals <=1:
         vertical_mutation = 0
     else:
@@ -45,7 +45,8 @@ if __name__ == "__main__":
 
     e.init_params(vertical_mutation, mutate_random_percent, parent_percent)
 
-    for _ in range(generations):
+    for i in range(generations):
+        print ("generation "+ str(i))
         e.run_generation()
 
     best = e.best_ever()
@@ -54,4 +55,5 @@ if __name__ == "__main__":
 
         f.writeline(len(best.slides))
         for s in best.slides:
-            f.writeline(' '.join(list(map(str,best.photos))))
+            pks = [x.pk for x in s.photos]
+            f.writeline(' '.join(list(map(str,pks))))

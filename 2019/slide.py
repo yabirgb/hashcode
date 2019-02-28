@@ -20,7 +20,8 @@ class Slide:
         """
 
         # Check that the photo is vertical
-        assert(photo2.is_vertical)
+        if photo2:
+            assert(photo2.is_vertical)
 
         # List of the photos
         self.photos = [photo1, photo2]
@@ -34,7 +35,8 @@ class Slide:
         result = set()
 
         for photo in self.photos:
-            result.union(photo.tags)
+            if photo:
+                result.union(photo.tags)
 
         return result
 
