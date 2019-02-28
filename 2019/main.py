@@ -1,7 +1,9 @@
 import sys
-from typing import List
+from photo import Photo
+from evolution import Evolution
+from individual import Individual
 
-def get_info(filename : str):
+def get_info(filename):
 
     with open(filename) as f:
         #get the first line of the input
@@ -19,15 +21,23 @@ if __name__ == "__main__":
     """
     uso:
 
-    python3 main.py nombre
+    python3 main.py nombre-entrada
     """
     filename = sys.argv[1]
 
-    n, phtos = get_info('input/{}.txt'.format(filename))
+    n, photos = get_info('input/{}.txt'.format(filename))
 
+    e = evolution.Evolution(50, photos)
+
+    for _ in range(50):
+        e.run_generation()
+
+    best = e.best_ever()
+    
     with open("{}.out".format(filename), "w") as f:
 
-        for l in results:
-            l = list(map(str, l))
+        f.writeline(len(best.slides))
+        for s in best.slides:
+            f.writeline(' '.join(list(map(str,best.photos))))
             line = str(len(l)) + ' ' + ' '.join(l) + '\n'
             f.write(line)
