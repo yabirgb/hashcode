@@ -34,13 +34,14 @@ class Evolution:
         for photo_id in indexes:
             photo = self.photos[photo_id]
             if photo.is_vertical:
-                if unpaired_photo:
+                if not unpaired_photo:
                     unpaired_photo = photo
                 else:
                     slides.append(Slide(photo, unpaired_photo))
+                    unpaired_photo = None
             else:
                 slides.append(photo)
-
+        print(len(slides), " ggggggggggggggggggggggggggggg")
         return Individual(slides)
 
     def run_generation(self):
