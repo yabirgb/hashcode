@@ -42,16 +42,17 @@ if __name__ == "__main__":
         vertical_mutation = 0
     else:
         vertical_mutation = mutate_vertical_percent
-
+    
     e.init_params(vertical_mutation, mutate_random_percent, parent_percent)
-
+    
     for i in range(generations):
         print ("generation "+ str(i))
         e.run_generation()
 
     best = e.best_ever
-    
-    with open("output/{}.out".format(filename), "w") as f:
+
+    fingerprint = "{}-{}-{}-{}-{}".format(population,generations, mutate_vertical_percent, mutate_random_percent, parent_percent )
+    with open("output/{}-{}.out".format(filename, fingerprint), "w") as f:
 
         f.write(str(len(best.slides)) + '\n')
         for s in best.slides:
