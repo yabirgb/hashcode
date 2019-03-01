@@ -1,13 +1,13 @@
-population = 100
-generations = 100
-mutate_vertical_percent = 0.2
-mutate_random_percent = 0.2
-parent_percent = 0.25
-
 import sys
 from photo import Photo
 from evolution import Evolution
 from individual import Individual
+
+population = int(sys.argv[2])
+generations = int(sys.argv[3])
+mutate_vertical_percent = float(sys.argv[4])
+mutate_random_percent = float(sys.argv[5])
+parent_percent = float(sys.argv[5])
 
 def get_info(filename):
 
