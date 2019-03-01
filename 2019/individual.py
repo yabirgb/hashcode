@@ -47,13 +47,13 @@ class Individual:
         if i > 0:
             self.total_score -= self.score(i-1)
 
-        if i < len(slides)-1:
+        if i < len(self.slides)-1:
             self.total_score -= self.score(i)
 
         if j > 0 and j != i+1:
             self.total_score -= self.score(j-1)
 
-        if j < len(slides)-1 and j != i-1:
+        if j < len(self.slides)-1 and j != i-1:
             self.total_score -= self.score(j)
 
         photo1, photo2 = list(self.slides[i].photos)
@@ -65,13 +65,13 @@ class Individual:
         if i > 0:
             self.total_score += self.score(i-1)
 
-        if i < len(slides)-1:
+        if i < len(self.slides)-1:
             self.total_score += self.score(i)
             
         if j > 0 and j != i+1:
             self.total_score += self.score(j-1)
 
-        if j < len(slides)-1 and j != i-1:
+        if j < len(self.slides)-1 and j != i-1:
             self.total_score += self.score(j)
 
 
