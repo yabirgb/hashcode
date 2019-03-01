@@ -56,8 +56,8 @@ class Individual:
         if j < len(self.slides)-1 and j != i-1:
             self.total_score -= self.score(j)
 
-        photo1, photo2 = list(self.slides[i].photos)
-        photo3, photo4 = list(self.slides[j].photos)
+        photo1, photo2 = list(self.vertical[i].photos)
+        photo3, photo4 = list(self.vertical[j].photos)
         
         self.slides[i] = Slide(photo1, photo3)
         self.slides[j] = Slide(photo2, photo4)
