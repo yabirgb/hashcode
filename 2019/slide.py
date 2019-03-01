@@ -27,7 +27,7 @@ class Slide:
         self.photos = [photo1, photo2]
 
         
-        self.is_vertical = photo1 and photo2
+        self.is_vertical = all(self.photos)
     
     @property
     def tags(self):

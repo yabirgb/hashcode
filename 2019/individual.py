@@ -55,7 +55,8 @@ class Individual:
 
         if j < len(self.slides)-1 and j != i-1:
             self.total_score -= self.score(j)
-
+        
+        # i,j are only vertical
         photo1, photo2 = list(self.slides[i].photos)
         photo3, photo4 = list(self.slides[j].photos)
         
