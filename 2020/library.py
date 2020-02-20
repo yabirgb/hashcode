@@ -13,14 +13,20 @@ class Library:
 
     def heuristic(self, remaining, scores, scanned):
 
-        b=(remaining-self.registration)*self.per_day
+        b=min((remaining-self.registration)*self.per_day, len(self.books))
 
         own_scores = [scores[i]*scanned[i] for i in self.books]
-        own_scores.sort(reverse=True)
+        
+        aux = zip(self.books, own_scores)
+
+        aux = sorted(aux, key=lambda x:x[1])
 
         h = 0
 
-        for i in range(0, b):
-            h+=own_scores[i]
+        books_to_scan=[]
 
-        return h
+        for i in range(0, b):
+            h+=aux[i][1]
+            books_to_scan+=aux[i][0]
+
+        return h, books_to_scan
