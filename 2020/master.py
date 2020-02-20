@@ -3,7 +3,7 @@ from library import Library
 
 class Master:
 
-    def __init__(self, total_days:int, scores:List[int], libraries:List[Library]):
+    def __init__(self, total_days:int, scores:int, libraries:List[Library]):
 
         self.current_day = 0
         self.total_days = total_days
@@ -34,8 +34,11 @@ class Master:
         # decide wich libraries to activate in this step
 
         if self.next_available_day == self.current_day:
-
+            
             if self.currently_activating != None:
+                for book in self.libraries[self.currently_activating].books_to_scan:
+                    self.scanned[book] = 0
+                    
                 self.active.append(self.currently_activating)
             
             best_score, best_lib = 0, None
@@ -68,10 +71,6 @@ class Master:
             l = self.libraries[lib]
             lib_books.append((l.id_, l.books_to_scan))
 
-        string = ""
-
-        string += str(nlib) + "\n"
-
-        for lib in lib_books:
-            pass
+        return nlib, lib_books
             
+
