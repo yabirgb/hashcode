@@ -1,0 +1,6 @@
+from typing import List
+class Master:
+
+    def __init__(self, total_days:int, scores:List[int], libraries):
+
+        self.current_day

@@ -1,5 +1,6 @@
 from typing import List
 from library import Library
+import logging
 
 class Master:
 
@@ -21,6 +22,9 @@ class Master:
         self.next_available_day = 0
         self.currently_activating = None
 
+        #self.i = int(len(self.libraries)/2)
+        self.i = 0
+        
     @property
     def remaining_days(self) ->int:
         return self.total_days-self.current_day
@@ -28,6 +32,40 @@ class Master:
     def advance_days(self, number_of_days:int=1) -> int:
         self.current_day += number_of_days
         return self.remaining_days
+
+    def step_d(self):
+
+
+        # decide wich libraries to activate in this step
+
+        if self.next_available_day == self.current_day:
+            
+            if self.currently_activating != None:
+                for book in self.libraries[self.currently_activating].books_to_scan:
+                    self.scanned[book] = 0
+                    
+                self.active.append(self.currently_activating)
+            
+            best_score, best_lib = 0, self.i
+            self.i += 1
+
+            if best_lib != None and self.i < len(self.libraries):
+                self.currently_activating = best_lib
+                self.next_available_day += self.libraries[best_lib].registration
+
+                self.libraries[best_lib].compute_books_to_scan(
+                    self.remaining_days,
+                    self.scores,
+                    self.scanned)
+
+        
+        # decide the books to register this step for each librarie active
+        # store the books scanned today
+        # step
+
+
+        return self.advance_days(1)
+
 
     def step(self):
 
@@ -46,7 +84,7 @@ class Master:
             for lib in self.libraries:
                 # library is currently not activated
                 if lib.id_ not in self.active:
-                    s = lib.heuristic(self.remaining_days,
+                    s = lib.heuristic4(self.remaining_days,
                                       self.scores,
                                       self.scanned)
 
@@ -57,11 +95,18 @@ class Master:
             if best_lib != None:
                 self.currently_activating = best_lib
                 self.next_available_day += self.libraries[best_lib].registration
+
+                self.libraries[best_lib].compute_books_to_scan(
+                    self.remaining_days,
+                    self.scores,
+                    self.scanned)
+
         
         # decide the books to register this step for each librarie active
         # store the books scanned today
         # step
 
+        logging.info(self.remaining_days)
         return self.advance_days(1)
 
     def format_output(self):

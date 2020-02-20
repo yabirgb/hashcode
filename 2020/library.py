@@ -7,6 +7,8 @@ class Library:
         self.per_day = per_day
         self.id_ = id_
 
+        self.n = len(self.books)
+
         self.books_to_scan=[]
 
     def __str__(self):
@@ -14,22 +16,28 @@ class Library:
         
 
     def heuristic(self, remaining, scores, scanned):
-
-        b=min((remaining-self.registration)*self.per_day, len(self.books))
+        b=min((remaining-self.registration)*self.per_day, self.n)
 
         own_scores = [scores[i]*scanned[i] for i in self.books]
         own_scores.sort(reverse=True)
 
-        h = 0
+        return sum (own_scores[:b])/self.registration**2
 
-        for i in range(0, b):
-            h+=own_scores[i]
+    def heuristic2(self, remaining, score, scanned):
+        
+        return min((remaining-self.registration)*self.per_day, self.n)/self.registration**2
 
-        return h
+    def heuristic3(self, remaining, score, scanned):
+        
+        return min((remaining-self.registration)**2 * self.per_day, self.n)/self.registration
+
+    def heuristic4(self, remaining, score, scanned):
+        
+        return 1/self.registration
 
     def compute_books_to_scan(self, remaining, scores, scanned):
 
-        b=min((remaining-self.registration)*self.per_day, len(self.books))
+        b=min((remaining-self.registration)*self.per_day, self.n)
 
         own_scores = [scores[i]*scanned[i] for i in self.books]
         
