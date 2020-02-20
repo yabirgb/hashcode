@@ -3,8 +3,6 @@ from typing import Dict, List
 from library import Library
 
 # Books ids scanned by library
-SCANNED = []
-
 def read_input(filename):
 
     with open(filename, 'r') as f:
@@ -25,13 +23,13 @@ def read_input(filename):
             lib = Library(books, info[1], info[2], i)
             libraries.append(lib)
 
-        return scores, libraries
+        return scores, libraries, days
 
 
     
 if __name__ == '__main__':
 
-    scores, libraries = read_input(sys.argv[1])
+    scores, libraries, total_days = read_input(sys.argv[1])
     print(scores)
     for lib in libraries:
         print(lib)
