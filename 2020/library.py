@@ -18,17 +18,27 @@ class Library:
         b=min((remaining-self.registration)*self.per_day, len(self.books))
 
         own_scores = [scores[i]*scanned[i] for i in self.books]
+        own_scores.sort(reverse=True)
+
+        h = 0
+
+        for i in range(0, b):
+            h+=own_scores[i]
+
+        return h
+
+    def compute_books_to_scan(self, remaining, scores, scanned):
+
+        b=min((remaining-self.registration)*self.per_day, len(self.books))
+
+        own_scores = [scores[i]*scanned[i] for i in self.books]
         
         aux = zip(self.books, own_scores)
 
         aux = sorted(aux, key=lambda x:-x[1])
 
-        h = 0
 
         self.books_to_scan=[]
 
         for i in range(0, b):
-            h+=aux[i][1]
             self.books_to_scan.append(aux[i][0])
-
-        return h
