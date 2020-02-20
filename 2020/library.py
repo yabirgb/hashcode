@@ -3,7 +3,6 @@ class Library:
     def __init__(self, books: List[int], days:int, per_day:int, id_:int):
 
         self.books = list(books)
-        self.scanned = []
         self.registration = days
         self.per_day = per_day
         self.id_ = id_

@@ -2,6 +2,9 @@ import sys
 from typing import Dict, List
 from library import Library
 
+# Books ids scanned by library
+SCANNED = []
+
 def read_input(filename):
 
     with open(filename, 'r') as f:
