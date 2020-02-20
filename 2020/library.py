@@ -1,6 +1,6 @@
 class Library:
 
-    def __init__(self, books: List[int], days:int, per_day:int, id_:int):
+    def __init__(self, books: int, days:int, per_day:int, id_:int):
 
         self.books = list(books)
         self.registration = days
@@ -21,7 +21,7 @@ class Library:
         
         aux = zip(self.books, own_scores)
 
-        aux = sorted(aux, key=lambda x:x[1])
+        aux = sorted(aux, key=lambda x:-x[1])
 
         h = 0
 
@@ -29,6 +29,6 @@ class Library:
 
         for i in range(0, b):
             h+=aux[i][1]
-            self.books_to_scan+=aux[i][0]
+            self.books_to_scan.append(aux[i][0])
 
         return h
