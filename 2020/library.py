@@ -21,7 +21,7 @@ class Library:
         
         aux = zip(self.books, own_scores)
 
-        aux = sorted(aux, key=lambda x:x[1])
+        aux = sorted(aux, key=lambda x:-x[1])
 
         h = 0
 
@@ -29,6 +29,6 @@ class Library:
 
         for i in range(0, b):
             h+=aux[i][1]
-            self.books_to_scan+=aux[i][0]
+            self.books_to_scan.append(aux[i][0])
 
         return h

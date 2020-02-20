@@ -23,7 +23,7 @@ class Master:
 
     @property
     def remaining_days(self) ->int:
-        return total_days-current_day
+        return self.total_days-self.current_day
 
     def advance_days(self, number_of_days:int=1) -> int:
         self.current_day += number_of_days
@@ -43,7 +43,7 @@ class Master:
             
             best_score, best_lib = 0, None
             
-            for lib in libraries:
+            for lib in self.libraries:
                 # library is currently not activated
                 if lib.id_ not in self.active:
                     s = lib.heuristic(self.remaining_days,
@@ -53,18 +53,20 @@ class Master:
                     if s > best_score:
                         best_score = s
                         best_lib = lib.id_
-            self.currently_activating = best_lib
-            self.next_available_day += self.libraries[best_lib].registration
+
+            if best_lib != None:
+                self.currently_activating = best_lib
+                self.next_available_day += self.libraries[best_lib].registration
         
         # decide the books to register this step for each librarie active
         # store the books scanned today
         # step
 
-        self.advance_days(1)
+        return self.advance_days(1)
 
     def format_output(self):
 
-        nlib = sum([1 for x in self.active if x == True])
+        nlib = len(self.active)
         lib_books = []
         
         for lib in self.active:
