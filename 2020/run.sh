@@ -7,9 +7,9 @@ testd="inputs/d_tough_choices.txt"
 teste="inputs/e_so_many_books.txt"
 testf="inputs/f_libraries_of_the_world.txt"
 
-python3 main.py $testa
-python3 main.py $testb
-python3 main.py $testc
-python3 main.py $testd
-python3 main.py $teste
-python3 main.py $testf
+time python3 main.py $testa
+time python3 main.py $testb
+time python3 main.py $testc
+time python3 main.py $testd
+time python3 main.py $teste
+time python3 main.py $testf
