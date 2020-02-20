@@ -7,6 +7,8 @@ class Library:
         self.per_day = per_day
         self.id_ = id_
 
+        self.books_to_scan=[]
+
     def __str__(self):
         return f'Library with id {self.id_} has {len(self.books)} books. {self.per_day} books per day. Registration of {self.registration}'
         
@@ -23,10 +25,10 @@ class Library:
 
         h = 0
 
-        books_to_scan=[]
+        self.books_to_scan=[]
 
         for i in range(0, b):
             h+=aux[i][1]
-            books_to_scan+=aux[i][0]
+            self.books_to_scan+=aux[i][0]
 
-        return h, books_to_scan
+        return h
