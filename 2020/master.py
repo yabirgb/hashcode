@@ -24,6 +24,9 @@ class Master:
 
         #self.i = int(len(self.libraries)/2)
         self.i = 0
+        self.total = set()
+
+        self.libraries.sort(key = lambda x:len(set(x.books)-self.total))
         
     @property
     def remaining_days(self) ->int:
@@ -109,6 +112,7 @@ class Master:
         logging.info(self.remaining_days)
         return self.advance_days(1)
 
+        
     def format_output(self):
 
         nlib = len(self.active)

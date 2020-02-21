@@ -1,6 +1,6 @@
 #!/bin/bash
 
-testa="inputs/a_example"
+testa="inputs/a_example.txt"
 testb="inputs/b_read_on.txt"
 testc="inputs/c_incunabula.txt"
 testd="inputs/d_tough_choices.txt"

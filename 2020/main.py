@@ -37,7 +37,7 @@ def write_output(filename, nlib, lib_books):
         
         string += line1 + line2
 
-    name = filename.replace("input", "output").replace(".txt", ".out")
+    name = filename.replace("input", "output").replace(".txt", ".1.out")
     with open(name, "w") as f:
         f.write(string)
             
@@ -54,7 +54,7 @@ if __name__ == '__main__':
     rem = m.remaining_days
 
     while rem != 0:
-        rem = m.step()
+        rem = m.step_d()
         
 
     l, b = m.format_output()
